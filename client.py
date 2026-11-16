@@ -7,27 +7,45 @@ def clear():
 
 choice = ""
 choices = ["rock", "paper", "scissors"]
+repeat = True
 
 def choose():
     choiceInt = str(input("Please choose the number of the option you want to select:\n\n(1) Rock\n(2) Paper\n(3) Scissors\n\n"))
     if choiceInt == "1":
-        choice = "rock"
+        return "rock"
     elif choiceInt == "2":
-        choice = "paper"
+        return "paper"
     elif choiceInt == "3":
-        choice = "scissors"
+        return "scissors"
     else:
-        choice = random.choice(choices)
+        return random.choice(choices)
 
 def main():
+    while repeat == True:
+        serverAddress = "10.220.33.29" #lucas laptop
+        serverPort = 5000
 
-    serverAddress = "";
-    serverPort = 0;
+        clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        clientSocket.settimeout(1.0)
 
-    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientSocket.settimeout(1.0)
+        print(f"Pinging {serverAddress}:{serverPort}:\n")
 
-    print(f"Pinging {serverAddress}:{serverPort}:\n")
+        choice = choose()
+
+        try:
+            clientSocket.sendto(choice.encode("utf-8"), (serverAddress, serverPort))
+            response, serverAddress = clientSocket.recvfrom(1024)
+            print(f"SERVER: {response.decode("utf-8")}")
+            repeatPrompt = str(input(""))
+            if repeatPrompt == ("Y" or "y"):
+                pass
+            else:
+                repeat = False
+
+        except socket.timeout:
+            print("Request timed out.\n")
+
+    clientSocket.close()
 
 
 if __name__ == "__main__":

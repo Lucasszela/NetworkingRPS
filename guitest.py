@@ -1,4 +1,3 @@
-# import tkinter as tk
 import customtkinter as ctk
 
 ctk.set_appearance_mode("dark")
@@ -11,7 +10,7 @@ choice = None
 
 # main window
 root.title("Rock Paper Scissors")
-root.geometry("300x200")
+root.geometry("450x300")
 
 
 # what happens when the button is clicked

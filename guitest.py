@@ -7,6 +7,7 @@ root = ctk.CTk()  # create the main window
 
 
 choice = None
+buttons = []  
 
 # main window
 root.title("Rock Paper Scissors")
@@ -18,18 +19,17 @@ def button_clicked(value):
     global choice
     choice = value
     label.configure(text=f"You chose: {choice} waiting for opponent...")
-
+    for button in buttons:
+        button.configure(state="disabled")  # disable all buttons after a choice is made
+    
 # text label
 label = ctk.CTkLabel(root, text="Choose an option", font=("Arial", 16))
 label.pack(pady=20)
 
 # button creation
-rock = ctk.CTkButton(root, text="Rock", command=lambda: button_clicked("rock"))
-rock.pack(pady=5)
-paper = ctk.CTkButton(root, text="Paper", command=lambda: button_clicked("paper"))
-paper.pack(pady=5)
-scissors = ctk.CTkButton(root, text="Scissors", command=lambda: button_clicked("scissors"))
-scissors.pack(pady=5)
-
+for choice in ["Rock", "Paper", "Scissors"]:
+    button = ctk.CTkButton(root, text=choice, command=lambda c=choice: button_clicked(c))
+    button.pack(pady=5)
+    buttons.append(button)
 
 root.mainloop()

@@ -21,6 +21,7 @@ def choose():
         return random.choice(choices)
 
 def main():
+    global repeat
     while repeat == True:
         serverAddress = "10.220.33.29" #lucas laptop
         serverPort = 5000

@@ -1,6 +1,5 @@
 import socket
 
-
 SERVER_IP = "localhost" 
 # Localhost = 10.220.33.29
 SERVER_PORT = 5000
@@ -9,7 +8,6 @@ SERVER_PORT = 5000
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((SERVER_IP, SERVER_PORT))
 print(f"Servers started at {SERVER_IP}:{SERVER_PORT}")
-
 
 def GetPlayerChoice(playerNumber):
     """receives the choice from the player and returns it"""
@@ -24,6 +22,7 @@ def GetPlayerChoice(playerNumber):
     print(f"Player {playerNumber} chose: {choice}")
 
     return choice
+
 P1 = GetPlayerChoice(1)
 P2 = GetPlayerChoice(2)
 
@@ -36,3 +35,8 @@ def RPSLogic(P1, P2):
     else:
         return "Player 2 wins"
 
+def main():
+    return
+
+if __name__ == "__main__":
+    main()

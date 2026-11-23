@@ -34,9 +34,15 @@ def main():
         choice = choose()
 
         try:
+<<<<<<< HEAD
             # debug
             clientSocket.sendto(choice.encode("utf-8"), (serverAddress, serverPort))
             response, serverAddress = clientSocket.recvfrom(1024)
+=======
+            clientSocket.connect((serverAddress, serverPort))
+            clientSocket.sendall(choice.encode("utf-8"))
+            response = clientSocket.recv(1024)
+>>>>>>> f50f1a3cb7465941a5d632f63af480ce5694db97
             print(f"SERVER: {response.decode("utf-8")}")
             repeatPrompt = str(input(""))
             if repeatPrompt == ("Y" or "y"):
